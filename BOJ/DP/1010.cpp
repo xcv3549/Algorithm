@@ -1,36 +1,40 @@
 #include <iostream>
-#include <algorithm>
 
 using namespace std;
+
+unsigned int DP[31][31] ={0,};
+
+unsigned int Count(int N, int M);
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    cout.tie(NULL);
     
     int T,N,M,i;
-    uint64_t count,D1,D2;
     
     cin >> T;
     
     for(i=0; i<T; i++)
     {
         cin >> N >> M;
-        
-        D1 = 1;
-        D2 = 1;
 
-        N = min(N,M-N);
+        cout << Count(N,M) << endl;
+    }
+}
+
+unsigned int Count(int N, int M)
+{
+    if(!DP[N][M])
+    {
+        if(N==1)    return M;
         
-        while(N)
+        else
         {
-            D1 = D1 * (M-N+1);
-            D2 = D2 * N;
-            N--;
+            DP[N][M] = Count(N-1,M) * (M-N+1) / N;
+            return DP[N][M];
         }
-        
-        count = D1 / D2;
-        
-        cout << count << endl;
     }
     
+    return DP[N][M];
 }
