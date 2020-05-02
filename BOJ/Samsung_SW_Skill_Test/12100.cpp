@@ -29,9 +29,6 @@ int solve(int cnt , int Map[][20])
 {
 	int i,j,k,dir,val,ret=0;
 	int Array[20][20] = {0,};
-		//  2
-		// 0 1 
-		//  3
 	
 	if(cnt == 5)
 	{
